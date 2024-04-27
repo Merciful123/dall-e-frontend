@@ -39,9 +39,11 @@ const Home = () => {
 
       if (response.ok) {
         const result = await response.json();
-        setAllPosts(result.data.reverse());
+        setAllPosts(result?.data.reverse());
       }
     } catch (err) {
+      console.log(err);
+
       alert(err);
     } finally {
       setLoading(false);
@@ -54,11 +56,11 @@ const Home = () => {
 
   const handleSearchChange = (e) => {
     clearTimeout(searchTimeout);
-    setSearchText(e.target.value);
+    setSearchText(e.target.value.toLowerCase());
 
     setSearchTimeout(
       setTimeout(() => {
-        const searchResult = allPosts.filter((item) => item.name.toLowerCase().includes(searchText.toLowerCase()) || item.prompt.toLowerCase().includes(searchText.toLowerCase()));
+        const searchResult = allPosts?.filter((item) => item.name.toLowerCase().includes(searchText.toLowerCase()) || item.prompt.toLowerCase().includes(searchText.toLowerCase()));
         setSearchedResults(searchResult);
       }, 500),
     );

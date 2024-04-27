@@ -26,13 +26,16 @@ const Home = () => {
     setLoading(true);
 
     try {
-      // const response = await fetch('https://dalle-arbb.onrender.com/api/v1/post', {
-      const response = await fetch("http://localhost:8080/api/v1/post", {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await fetch(
+        "https://dall-e-app-zt1k.onrender.com/api/v1/post",
+        {
+          // const response = await fetch("http://localhost:8080/api/v1/post", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       if (response.ok) {
         const result = await response.json();
